@@ -301,9 +301,9 @@ const Checkout = () => {
           <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-8">
             <h3 className="text-lg font-semibold text-green-800 mb-3">Next Steps - Deposit Payment</h3>
             <div className="text-left space-y-2 text-sm text-green-700">
-              <p>• Please send <strong>{formatPrice(orderData.data.depositAmount)} EGP</strong> deposit to Vodafone Cash number: <strong>01033727566</strong></p>
-              <p>• After sending, click the WhatsApp button below to confirm your payment</p>
-              <p>• Your order will be processed once the deposit is confirmed</p>
+              <p>• Please send <strong>{formatPrice(orderData.data.depositAmount)} EGP</strong> deposit to Vodafone Cash number: <strong>01033727566</strong>.</p>
+              <p>• After sending, click the WhatsApp button below and send photo of the deposit to confirm your payment.</p>
+              <p>• Your order will be  processed and confirmed once the deposit is confirmed through a WhatsApp message on the phone number you entered.</p>
             </div>
             
             <div className="mt-6 space-y-3">
@@ -480,7 +480,7 @@ const Checkout = () => {
                 <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
                   <h3 className="font-semibold text-gray-800 mb-2">Vodafone Cash Details</h3>
                   <div className="text-sm text-gray-700">
-                    <p>Number: <strong>01033727566</strong></p>
+                    <p>Number: <strong>01092851229</strong></p>
                     <p>After order creation, you'll receive a WhatsApp link to confirm payment</p>
                   </div>
                 </div>

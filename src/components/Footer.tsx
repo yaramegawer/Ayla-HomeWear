@@ -15,8 +15,8 @@ const Footer = () => {
               <h3 className="text-lg font-medium mb-4">Contact Us</h3>
               <div className="space-y-2 text-sm text-gray-600">
                 <p>Email: info@elmawardy.com</p>
-                <p>Phone: +20 123 456 7890</p>
-                <p>WhatsApp: +20 123 456 7890</p>
+                <p>Phone: +20 10 92851229</p>
+                <p>WhatsApp: +20 10 92851229</p>
               </div>
             </div>
             
@@ -25,16 +25,15 @@ const Footer = () => {
               <div className="space-y-1 text-sm text-gray-600">
                 <p>Egypt, Giza</p>
                 <p>6th of October city</p>
-                <p>Family mall</p>
+                <p>Family mall 1st floor</p>
               </div>
             </div>
             
             <div className="text-center">
               <h3 className="text-lg font-medium mb-4">Business Hours</h3>
               <div className="space-y-1 text-sm text-gray-600">
-                <p>Saturday - Thursday: 10 AM - 10 PM</p>
-                <p>Friday: 2 PM - 10 PM</p>
-                <p>Sunday: Closed</p>
+                <p>Saturday - Thursday: 10 AM - 09 PM</p>
+                <p>Firday: Closed</p>
               </div>
             </div>
           </div>

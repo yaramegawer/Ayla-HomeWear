@@ -43,6 +43,16 @@ const Button = ({ mode, text, ...props }: ButtonProps) => {
           {text}
         </button>
       )}
+
+      {mode === "disabled" && (
+        <button
+          {...props}
+          className="text-gray-400 bg-gray-300 text-center text-xl font-normal tracking-[0.6px] leading-[72px] w-full h-12 flex items-center justify-center max-md:text-base cursor-not-allowed"
+          disabled
+        >
+          {text}
+        </button>
+      )}
     </>
   );
 };

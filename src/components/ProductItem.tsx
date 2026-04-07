@@ -18,13 +18,28 @@ const ProductItem = ({
   popularity: number;
   stock: number;
 }) => {
+  const isInStock = _stock > 0;
+
   return (
     <div className="w-[400px] flex flex-col gap-2 justify-center max-md:w-[300px]">
       <Link
         to={`/product/${id}`}
-        className="w-full h-[300px] max-md:h-[200px] overflow-hidden"
+        className="w-full h-[300px] max-md:h-[200px] overflow-hidden relative"
       >
-        <img src={image} alt={title} />
+        <img 
+          src={image} 
+          alt={title} 
+          className={`w-full h-full object-cover transition-all duration-300 ${
+            !isInStock ? 'grayscale opacity-60' : 'hover:scale-105'
+          }`}
+        />
+        {!isInStock && (
+          <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+            <span className="bg-white text-black px-4 py-2 rounded-lg font-semibold text-lg">
+              Out of Stock
+            </span>
+          </div>
+        )}
       </Link>
       <Link
         to={`/product/${id}`}
@@ -39,11 +54,22 @@ const ProductItem = ({
         ${price}
       </p>
       <div className="w-full flex flex-col gap-1">
+        <div className="text-center mb-2">
+          {isInStock ? (
+            <span className="text-green-600 font-semibold">In Stock</span>
+          ) : (
+            <span className="text-red-600 font-semibold">Out of Stock</span>
+          )}
+        </div>
         <Link
           to={`/product/${id}`}
-          className="text-white bg-secondaryBrown text-center text-xl font-normal tracking-[0.6px] leading-[72px] w-full h-12 flex items-center justify-center max-md:text-base"
+          className={`text-center text-xl font-normal tracking-[0.6px] leading-[72px] w-full h-12 flex items-center justify-center max-md:text-base ${
+            isInStock 
+              ? 'text-white bg-secondaryBrown hover:bg-secondaryBrown/90' 
+              : 'text-gray-400 bg-gray-300 cursor-not-allowed'
+          }`}
         >
-          View product
+          {isInStock ? 'View product' : 'Out of Stock'}
         </Link>
       </div>
     </div>

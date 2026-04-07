@@ -101,6 +101,12 @@ const SingleProduct = () => {
 
   const handleAddToCart = () => {
     if (singleProduct) {
+      // Check if product is in stock
+      if (singleProduct.stock <= 0) {
+        toast.error("This product is out of stock");
+        return;
+      }
+      
       // Validate that size and color are selected
       if (!size || !color) {
         toast.error("Please select both size and color before adding to cart");
@@ -191,6 +197,18 @@ const SingleProduct = () => {
               </p>
               <p className="text-2xl font-bold">${ singleProduct?.price }</p>
             </div>
+            {/* Stock Status */}
+            <div className="mt-2">
+              {singleProduct?.stock > 0 ? (
+                <span className="text-green-600 font-semibold">
+                  In Stock
+                </span>
+              ) : (
+                <span className="text-red-600 font-semibold">
+                  Out of Stock
+                </span>
+              )}
+            </div>
           </div>
 
           {/* Product Description */}
@@ -245,9 +263,10 @@ const SingleProduct = () => {
 
           {/* Add to Cart Button */}
           <Button
-            text="Add to Cart"
-            mode="black"
+            text={singleProduct?.stock > 0 ? "Add to Cart" : "Out of Stock"}
+            mode={singleProduct?.stock > 0 ? "black" : "disabled"}
             onClick={handleAddToCart}
+            disabled={singleProduct?.stock <= 0}
           />
         </div>
       </div>
