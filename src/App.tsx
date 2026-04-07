@@ -1,0 +1,58 @@
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  Cart,
+  Checkout,
+  HomeLayout,
+  Landing,
+  Policy,
+  Shop,
+  SingleProduct,
+} from "./pages";
+import { checkoutAction, searchAction } from "./actions/index";
+import { shopCategoryLoader } from "./pages/Shop";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomeLayout />,
+    children: [
+      {
+        index: true,
+        element: <Landing />,
+      },
+      {
+        path: "shop",
+        element: <Shop />,
+      },
+      {
+        path: "shop/:category",
+        element: <Shop />,
+        loader: shopCategoryLoader,
+      },
+      {
+        path: "product/:id",
+        element: <SingleProduct />,
+      },
+      {
+        path: "cart",
+        element: <Cart />,
+      },
+      {
+        path: "checkout",
+        element: <Checkout />,
+        action: checkoutAction,
+      },
+      {
+        path: "policy",
+        element: <Policy />,
+      },
+
+    ],
+  },
+]);
+
+function App() {
+  return <RouterProvider router={router} />;
+}
+
+export default App;
