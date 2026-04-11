@@ -23,7 +23,6 @@ export interface Product {
   season: string;
   stock: number;
   discount: number;
-  discountedPrice: number;
   createdAt?: string;
   updatedAt?: string;
 }

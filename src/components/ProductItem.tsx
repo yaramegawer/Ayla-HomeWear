@@ -8,7 +8,6 @@ const ProductItem = ({
   category,
   price,
   discount,
-  discountedPrice,
   popularity: _popularity,
   stock: _stock,
 }: {
@@ -18,12 +17,12 @@ const ProductItem = ({
   category: string;
   price: number;
   discount: number;
-  discountedPrice: number;
   popularity: number;
   stock: number;
 }) => {
   const isInStock = _stock > 0;
   const hasDiscount = discount > 0;
+  const originalPrice = hasDiscount ? price / (1 - discount / 100) : price;
 
   return (
     <div className="w-[400px] flex flex-col gap-2 justify-center max-md:w-[300px]">
@@ -64,15 +63,15 @@ const ProductItem = ({
         {hasDiscount ? (
           <div className="flex flex-col items-center gap-1">
             <p className="text-red-500 text-2xl font-bold max-md:text-xl">
-              ${discountedPrice.toFixed(2)}
+              ${price.toFixed(2)}
             </p>
             <p className="text-gray-500 text-lg line-through max-md:text-base">
-              ${price}
+              ${originalPrice.toFixed(2)}
             </p>
           </div>
         ) : (
           <p className="text-black text-2xl font-bold max-md:text-xl">
-            ${price}
+            ${price.toFixed(2)}
           </p>
         )}
       </div>

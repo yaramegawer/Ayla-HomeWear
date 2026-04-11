@@ -292,7 +292,6 @@ const SingleProduct = () => {
                 category={product.category}
                 price={product.price}
                 discount={product.discount || 0}
-                discountedPrice={product.discountedPrice || product.price}
                 popularity={0}
                 stock={product.stock}
               />
