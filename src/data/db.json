@@ -7,7 +7,9 @@
       "category": "special-edition",
       "price": 3500,
       "popularity": 5,
-      "stock": 10
+      "stock": 10,
+      "discount": 20,
+      "discountedPrice": 2800
     },
     {
       "id": "2",
@@ -16,7 +18,9 @@
       "category": "luxury-collection",
       "price": 1050,
       "popularity": 4,
-      "stock": 20
+      "stock": 20,
+      "discount": 0,
+      "discountedPrice": 1050
     },
     {
       "id": "3",
@@ -25,7 +29,9 @@
       "category": "summer-edition",
       "price": 5000,
       "popularity": 3,
-      "stock": 5
+      "stock": 5,
+      "discount": 15,
+      "discountedPrice": 4250
     },
     {
       "id": "4",
@@ -34,7 +40,9 @@
       "category": "unique-collection",
       "price": 2500,
       "popularity": 2,
-      "stock": 15
+      "stock": 15,
+      "discount": 0,
+      "discountedPrice": 2500
     },
     {
       "id": "5",
@@ -43,7 +51,9 @@
       "category": "unique-collection",
       "price": 5200,
       "popularity": 1,
-      "stock": 0
+      "stock": 0,
+      "discount": 30,
+      "discountedPrice": 3640
     },
     {
       "id": "6",
@@ -52,7 +62,9 @@
       "category": "luxury-collection",
       "price": 8500,
       "popularity": 20,
-      "stock": 20
+      "stock": 20,
+      "discount": 10,
+      "discountedPrice": 7650
     },
     {
       "id": "7",
@@ -61,7 +73,9 @@
       "category": "luxury-collection",
       "price": 4500,
       "popularity": 5,
-      "stock": 500
+      "stock": 500,
+      "discount": 0,
+      "discountedPrice": 4500
     },
     {
       "id": "8",
@@ -70,7 +84,9 @@
       "category": "unique-collection",
       "price": 4500,
       "popularity": 5,
-      "stock": 500
+      "stock": 500,
+      "discount": 25,
+      "discountedPrice": 3375
     },
     {
       "id": "9",
@@ -79,7 +95,9 @@
       "category": "luxury-collection",
       "price": 4500,
       "popularity": 5,
-      "stock": 500
+      "stock": 500,
+      "discount": 0,
+      "discountedPrice": 4500
     },
     {
       "id": "10",
@@ -88,7 +106,9 @@
       "category": "unique-collection",
       "price": 4500,
       "popularity": 5,
-      "stock": 500
+      "stock": 500,
+      "discount": 15,
+      "discountedPrice": 3825
     },
     {
       "id": "11",
@@ -97,7 +117,9 @@
       "category": "luxury-collection",
       "price": 4500,
       "popularity": 5,
-      "stock": 500
+      "stock": 500,
+      "discount": 5,
+      "discountedPrice": 4275
     },
     {
       "id": "12",
@@ -106,7 +128,9 @@
       "category": "summer-edition",
       "price": 4500,
       "popularity": 5,
-      "stock": 500
+      "stock": 500,
+      "discount": 0,
+      "discountedPrice": 4500
     },
     {
       "id": "13",
@@ -115,7 +139,9 @@
       "category": "special-edition",
       "price": 4500,
       "popularity": 5,
-      "stock": 500
+      "stock": 500,
+      "discount": 20,
+      "discountedPrice": 3600
     },
     {
       "id": "14",
@@ -124,7 +150,9 @@
       "category": "special-edition",
       "price": 4500,
       "popularity": 5,
-      "stock": 500
+      "stock": 500,
+      "discount": 0,
+      "discountedPrice": 4500
     },
     {
       "id": "15",
@@ -133,7 +161,9 @@
       "category": "special-edition",
       "price": 4500,
       "popularity": 5,
-      "stock": 500
+      "stock": 500,
+      "discount": 10,
+      "discountedPrice": 4050
     },
     {
       "id": "16",
@@ -142,7 +172,9 @@
       "category": "special-edition",
       "price": 4500,
       "popularity": 5,
-      "stock": 500
+      "stock": 500,
+      "discount": 0,
+      "discountedPrice": 4500
     },
     {
       "id": "17",
@@ -151,7 +183,9 @@
       "category": "special-edition",
       "price": 4500,
       "popularity": 5,
-      "stock": 500
+      "stock": 500,
+      "discount": 15,
+      "discountedPrice": 3825
     },
     {
       "id": "18",
@@ -160,7 +194,9 @@
       "category": "unique-collection",
       "price": 4500,
       "popularity": 5,
-      "stock": 500
+      "stock": 500,
+      "discount": 25,
+      "discountedPrice": 3375
     }
   ],
   "orders": [

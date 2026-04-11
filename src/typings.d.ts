@@ -19,6 +19,8 @@ export interface Product {
   category: string;
   season: string;
   stock: number;
+  discount: number;
+  discountedPrice: number;
   createdAt?: string;
   updatedAt?: string;
 }

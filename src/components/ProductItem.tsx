@@ -7,6 +7,8 @@ const ProductItem = ({
   title,
   category,
   price,
+  discount,
+  discountedPrice,
   popularity: _popularity,
   stock: _stock,
 }: {
@@ -15,10 +17,13 @@ const ProductItem = ({
   title: string;
   category: string;
   price: number;
+  discount: number;
+  discountedPrice: number;
   popularity: number;
   stock: number;
 }) => {
   const isInStock = _stock > 0;
+  const hasDiscount = discount > 0;
 
   return (
     <div className="w-[400px] flex flex-col gap-2 justify-center max-md:w-[300px]">
@@ -33,6 +38,11 @@ const ProductItem = ({
             !isInStock ? 'grayscale opacity-60' : 'hover:scale-105'
           }`}
         />
+        {hasDiscount && (
+          <div className="absolute top-2 right-2 bg-red-500 text-white px-3 py-1 rounded-lg font-semibold text-sm z-10">
+            -{discount}%
+          </div>
+        )}
         {!isInStock && (
           <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
             <span className="bg-white text-black px-4 py-2 rounded-lg font-semibold text-lg">
@@ -50,9 +60,22 @@ const ProductItem = ({
       <p className="text-secondaryBrown text-lg tracking-wide text-center max-md:text-base">
         {formatCategoryName(category)}{" "}
       </p>
-      <p className="text-black text-2xl text-center font-bold max-md:text-xl">
-        ${price}
-      </p>
+      <div className="text-center">
+        {hasDiscount ? (
+          <div className="flex flex-col items-center gap-1">
+            <p className="text-red-500 text-2xl font-bold max-md:text-xl">
+              ${discountedPrice.toFixed(2)}
+            </p>
+            <p className="text-gray-500 text-lg line-through max-md:text-base">
+              ${price}
+            </p>
+          </div>
+        ) : (
+          <p className="text-black text-2xl font-bold max-md:text-xl">
+            ${price}
+          </p>
+        )}
+      </div>
       <div className="w-full flex flex-col gap-1">
         <div className="text-center mb-2">
           {isInStock ? (
