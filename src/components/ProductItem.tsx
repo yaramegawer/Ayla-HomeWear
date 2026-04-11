@@ -63,15 +63,15 @@ const ProductItem = ({
         {hasDiscount ? (
           <div className="flex flex-col items-center gap-1">
             <p className="text-red-500 text-2xl font-bold max-md:text-xl">
-              ${price.toFixed(2)}
+              {price.toFixed(2)} egp
             </p>
             <p className="text-gray-500 text-lg line-through max-md:text-base">
-              ${originalPrice.toFixed(2)}
+              {originalPrice.toFixed(2)} egp
             </p>
           </div>
         ) : (
           <p className="text-black text-2xl font-bold max-md:text-xl">
-            ${price.toFixed(2)}
+            {price.toFixed(2)} egp
           </p>
         )}
       </div>
