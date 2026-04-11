@@ -64,16 +64,11 @@ const Policy = () => {
           <h2 className="text-2xl font-medium mb-4">Returns & Exchanges</h2>
           <div className="text-gray-600 leading-relaxed space-y-3">
             <p>
-              <strong>Return Policy:</strong> Returns are accepted within 14 days of delivery.
-              Items must be unused and in their original condition.
+              Orders are eligible for inspection upon delivery. Customers may check the items before accepting the order, as long as the courier is present.
+              <br />
+              Once the order has been received and the courier has left, no returns or exchanges will be accepted.
             </p>
-            <p>
-              <strong>Exchange Policy:</strong> Exchanges are allowed within 14 days for different sizes
-              or colors, subject to availability.
-            </p>
-            <p>
-              <strong>Non-returnable Items:</strong> Items during sale cannot be returned.
-            </p>
+           
           </div>
         </section>
 
@@ -116,7 +111,7 @@ const Policy = () => {
           <h2 className="text-2xl font-medium mb-4">Terms & Conditions</h2>
           <div className="text-gray-600 leading-relaxed space-y-3">
             <p>
-              By placing an order with ElMawardy Store, you agree to these terms and conditions.
+              By placing an order with Ayla HomeWear, you agree to these terms and conditions.
               We reserve the right to update these policies at any time.
             </p>
             <p>

@@ -8,13 +8,13 @@ const Footer = () => {
       <footer className="max-w-screen-2xl mx-auto border-b-8 border-secondaryBrown px-5 max-[400px]:px-3">
         
         <div className="flex flex-col gap-8 my-20">
-          <h2 className="text-6xl font-light text-center max-sm:text-5xl">ElMawardy Store</h2>
+          <h2 className="text-6xl font-light text-center max-sm:text-5xl">Ayla HomeWear</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="text-center">
               <h3 className="text-lg font-medium mb-4">Contact Us</h3>
               <div className="space-y-2 text-sm text-gray-600">
-                <p>Email: info@elmawardy.com</p>
+                
                 <p>Phone: +20 10 92851229</p>
                 <p>WhatsApp: +20 10 92851229</p>
               </div>
