@@ -7,7 +7,7 @@ import {
 } from "../features/shop/shopSlice";
 import ProductGrid from "./ProductGrid";
 import ShowingPagination from "./ShowingPagination";
-import LoadingSpinner from "./LoadingSpinner";
+import ProductSkeleton from "./ProductSkeleton";
 import NoProducts from "./NoProducts";
 
 const ProductGridWithPagination = ({
@@ -105,7 +105,11 @@ const ProductGridWithPagination = ({
   return (
     <>
       {isLoading ? (
-        <LoadingSpinner size="large" text="Loading products..." />
+        <div className="max-w-screen-2xl flex flex-wrap justify-between items-center gap-y-8 mx-auto mt-12 max-xl:justify-start max-xl:gap-5 px-5 max-md:gap-4 max-sm:gap-3 max-[400px]:px-3">
+          {[...Array(6)].map((_, index) => (
+            <ProductSkeleton key={index} />
+          ))}
+        </div>
       ) : products.length === 0 ? (
         <NoProducts />
       ) : (

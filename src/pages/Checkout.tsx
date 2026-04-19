@@ -8,6 +8,14 @@ import toast from "react-hot-toast";
 import { useState } from "react";
 import type { ProductInCart } from "../typings";
 
+// Function to generate WhatsApp link with correct phone number
+const generateWhatsAppLink = (phone: string) => {
+  // Remove any non-digit characters and ensure it starts with country code
+  const cleanPhone = phone.replace(/\D/g, '');
+  const phoneNumber = cleanPhone.startsWith('20') ? cleanPhone : `20${cleanPhone}`;
+  return `https://wa.me/${phoneNumber}`;
+};
+
 // Egyptian Governorates with shipping costs
 const egyptianGovernorates = [
   { name: "Cairo", shippingCost: 65 },
@@ -209,15 +217,13 @@ const Checkout = () => {
         
         // Auto-open WhatsApp after 2 seconds
         setTimeout(() => {
-          if (response.data.depositInfo?.whatsappLink) {
-            console.log('Opening WhatsApp link:', response.data.depositInfo.whatsappLink);
-            window.open(response.data.depositInfo.whatsappLink, '_blank');
-          } else {
-            console.log('No WhatsApp link found in response');
-            toast.error('WhatsApp link not available. Please contact support.');
-          }
+          const correctWhatsAppLink = generateWhatsAppLink('010 92851229');
+          console.log('Opening WhatsApp link:', correctWhatsAppLink);
+          window.open(correctWhatsAppLink, '_blank');
         }, 2000);
       } else {
+        console.log('No WhatsApp link found in response');
+        toast.error('WhatsApp link not available. Please contact support.');
         toast.error(response.data.message || "Failed to create order");
       }
     } catch (error: any) {
@@ -301,14 +307,14 @@ const Checkout = () => {
           <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-8">
             <h3 className="text-lg font-semibold text-green-800 mb-3">Next Steps - Deposit Payment</h3>
             <div className="text-left space-y-2 text-sm text-green-700">
-              <p>• Please send <strong>{formatPrice(orderData.data.depositAmount)} EGP</strong> deposit to Vodafone Cash number: <strong>01033727566</strong>.</p>
+              <p>• Please send <strong>{formatPrice(orderData.data.depositAmount)} EGP</strong> deposit to Vodafone Cash number: <strong>01092851229</strong>.</p>
               <p>• After sending, click the WhatsApp button below and send photo of the deposit to confirm your payment.</p>
               <p>• Your order will be  processed and confirmed once the deposit is confirmed through a WhatsApp message on the phone number you entered.</p>
             </div>
             
             <div className="mt-6 space-y-3">
               <a
-                href={orderData.depositInfo?.whatsappLink}
+                href={generateWhatsAppLink('01092851229')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center w-full bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors"
@@ -480,7 +486,7 @@ const Checkout = () => {
                 <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
                   <h3 className="font-semibold text-gray-800 mb-2">Vodafone Cash Details</h3>
                   <div className="text-sm text-gray-700">
-                    <p>Number: <strong>01092851229</strong></p>
+                    <p>Number: <strong>010 92851229</strong>.</p>
                     <p>After order creation, you'll receive a WhatsApp link to confirm payment</p>
                   </div>
                 </div>

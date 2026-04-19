@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { HiXMark } from "react-icons/hi2";
 import { Link } from "react-router-dom";
+import Logo from "./Logo";
 
 const SidebarMenu = ({
   isSidebarOpen,
@@ -37,23 +38,23 @@ const SidebarMenu = ({
             />
           </div>
           <div className="flex justify-center mt-2">
-            <Link
-              to="/"
-              className="text-4xl font-light tracking-[1.08px] max-sm:text-3xl max-[400px]:text-2xl"
-            >
-              Ayla <br /> HomeWear
-            </Link>
+            <Logo 
+              size="large" 
+              onClick={() => setIsSidebarOpen(false)}
+            />
           </div>
           <div className="flex flex-col items-center gap-1 mt-7">
             <Link
               to="/"
               className="py-2 border-y border-secondaryBrown w-full block flex justify-center"
+              onClick={() => setIsSidebarOpen(false)}
             >
               Home
             </Link>
             <Link
               to="/shop"
               className="py-2 border-y border-secondaryBrown w-full block flex justify-center"
+              onClick={() => setIsSidebarOpen(false)}
             >
               Shop
             </Link>
@@ -61,6 +62,7 @@ const SidebarMenu = ({
             <Link
               to="/cart"
               className="py-2 border-y border-secondaryBrown w-full block flex justify-center"
+              onClick={() => setIsSidebarOpen(false)}
             >
               Cart
             </Link>

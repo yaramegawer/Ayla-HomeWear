@@ -1,5 +1,21 @@
 import customFetch from '../axios/custom';
 
+// Simple cache implementation
+const cache = new Map<string, { data: any; timestamp: number }>();
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
+const getCachedData = (key: string) => {
+  const cached = cache.get(key);
+  if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
+    return cached.data;
+  }
+  return null;
+};
+
+const setCachedData = (key: string, data: any) => {
+  cache.set(key, { data, timestamp: Date.now() });
+};
+
 // Product interface definition (matches backend schema)
 export interface Product {
   id: string;
@@ -53,10 +69,19 @@ export const productApi = {
       params.append('season', season);
     }
     
+    const cacheKey = `products_${params.toString()}`;
+    
+    // Check cache first
+    const cachedData = getCachedData(cacheKey);
+    if (cachedData) {
+      return cachedData;
+    }
+    
     const response = await customFetch.get(`/product?${params.toString()}`);
     const data = response.data;
-    
-    console.log('Backend response:', data);
+
+    // Cache the response
+    setCachedData(cacheKey, data);
 
     // Backend now handles filtering and pagination, so we can return the data directly
     return data;
@@ -71,6 +96,14 @@ export const productApi = {
 
   // Search products
   searchProducts: async (query: string, page: number = 1): Promise<ProductsResponse> => {
+    const cacheKey = `search_${query}_${page}`;
+    
+    // Check cache first
+    const cachedData = getCachedData(cacheKey);
+    if (cachedData) {
+      return cachedData;
+    }
+    
     const response = await customFetch.get(`/product?page=${page}`);
     const data = response.data;
 
@@ -87,6 +120,9 @@ export const productApi = {
       data.pagination.totalPages = Math.ceil(searchCount / 20);
     }
 
+    // Cache the response
+    setCachedData(cacheKey, data);
+    
     return data;
   }
 };
