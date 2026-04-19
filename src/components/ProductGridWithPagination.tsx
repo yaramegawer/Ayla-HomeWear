@@ -7,6 +7,8 @@ import {
 } from "../features/shop/shopSlice";
 import ProductGrid from "./ProductGrid";
 import ShowingPagination from "./ShowingPagination";
+import LoadingSpinner from "./LoadingSpinner";
+import NoProducts from "./NoProducts";
 
 const ProductGridWithPagination = ({
   searchQuery,
@@ -28,12 +30,14 @@ const ProductGridWithPagination = ({
   const [products, setProducts] = useState<Product[]>([]);
   const [pagination, setPagination] = useState<ProductsResponse['pagination'] | null>(null);
   const [currentPage, setCurrentPage] = useState(page || 1);
+  const [isLoading, setIsLoading] = useState(false);
   const { totalProducts } = useAppSelector((state) => state.shop);
   const dispatch = useAppDispatch();
 
   // Memoize the function to prevent unnecessary re-renders
   const getProducts = useCallback(
     async (query: string, sort: string, pageNum: number) => {
+      setIsLoading(true);
       try {
         let response: ProductsResponse;
         
@@ -75,6 +79,8 @@ const ProductGridWithPagination = ({
         console.error("Failed to fetch products:", error);
         setProducts([]);
         dispatch(setShowingProducts(0));
+      } finally {
+        setIsLoading(false);
       }
     },
     [category, season, totalProducts, dispatch]
@@ -98,13 +104,21 @@ const ProductGridWithPagination = ({
 
   return (
     <>
-      <ProductGrid products={products} />
-      <ShowingPagination 
-        page={currentPage} 
-        category={category || ""} 
-        pagination={pagination}
-        onPageChange={handlePageChange}
-      />
+      {isLoading ? (
+        <LoadingSpinner size="large" text="Loading products..." />
+      ) : products.length === 0 ? (
+        <NoProducts />
+      ) : (
+        <>
+          <ProductGrid products={products} />
+          <ShowingPagination 
+            page={currentPage} 
+            category={category || ""} 
+            pagination={pagination}
+            onPageChange={handlePageChange}
+          />
+        </>
+      )}
     </>
   );
 };
