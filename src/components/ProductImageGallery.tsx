@@ -73,7 +73,7 @@ const ProductImageGallery = ({
         <img 
           src={selectedImage} 
           alt="Product" 
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover transition-opacity duration-300 ease-in-out"
         />
         
         {/* Navigation arrows for desktop */}

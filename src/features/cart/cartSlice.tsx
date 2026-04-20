@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { ProductInCart } from "../../typings";
+import { addProductToCartWithValidation } from "./cartThunks";
 
 type CartState = {
   productsInCart: ProductInCart[];
@@ -16,6 +17,25 @@ export const cartSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
+    addValidatedProductToCart: (state, action: PayloadAction<ProductInCart>) => {
+      const existingProduct = state.productsInCart.find(
+        (product) => product.id === action.payload.id && product.color === action.payload.color
+      );
+      if (existingProduct) {
+        state.productsInCart = state.productsInCart.map((product) => {
+          if (product.id === action.payload.id && product.color === action.payload.color) {
+            return {
+              ...product,
+              quantity: product.quantity + action.payload.quantity,
+            };
+          }
+          return product;
+        });
+      } else {
+        state.productsInCart.push(action.payload);
+      }
+      cartSlice.caseReducers.calculateTotalPrice(state);
+    },
     addProductToTheCart: (state, action: PayloadAction<ProductInCart>) => {
       const existingProduct = state.productsInCart.find(
         (product) => product.id === action.payload.id && product.color === action.payload.color
@@ -70,10 +90,36 @@ export const cartSlice = createSlice({
       state.subtotal = 0;
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(addProductToCartWithValidation.fulfilled, (state, action) => {
+        // Add the validated product to cart
+        const product = action.payload;
+        const existingProduct = state.productsInCart.find(
+          (p) => p.id === product.id && p.color === product.color
+        );
+        
+        if (existingProduct) {
+          state.productsInCart = state.productsInCart.map((p) => {
+            if (p.id === product.id && p.color === product.color) {
+              return {
+                ...p,
+                quantity: p.quantity + product.quantity,
+              };
+            }
+            return p;
+          });
+        } else {
+          state.productsInCart.push(product);
+        }
+        
+        cartSlice.caseReducers.calculateTotalPrice(state);
+      });
+  },
 });
 
 export const {
-  addProductToTheCart,
+  addValidatedProductToCart,
   removeProductFromTheCart,
   updateProductQuantity,
   calculateTotalPrice,

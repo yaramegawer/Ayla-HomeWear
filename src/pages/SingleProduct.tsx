@@ -3,30 +3,32 @@ import {
   ProductItem,
   QuantityInput,
   StandardSelectInput,
+  ColorPicker,
 } from "../components";
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import { addProductToTheCart } from "../features/cart/cartSlice";
+import { addProductToCartWithValidation } from "../features/cart/cartThunks";
 import { useAppDispatch } from "../hooks";
-import { productApi } from "../services/productApi";
 import WithSelectInputWrapper from "../utils/withSelectInputWrapper";
 import WithNumberInputWrapper from "../utils/withNumberInputWrapper";
 import { formatCategoryName } from "../utils/formatCategoryName";
 import ProductImageGallery from "../components/ProductImageGallery";
 import toast from "react-hot-toast";
 import { Product } from "../typings.d";
+import { productApi } from "../services/productApi";
 
 const SingleProduct = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [singleProduct, setSingleProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const dispatch = useAppDispatch();
   // defining default values for input fields
   const [size, setSize] = useState<string>("");
   const [color, setColor] = useState<string>("");
   const [quantity, setQuantity] = useState<number>(1);
+  const [validationError, setValidationError] = useState<string>("");
   const params = useParams<{ id: string }>();
-  const dispatch = useAppDispatch();
 
   // Function to clean description by removing shipping and care instructions
   const cleanDescription = (description?: string): string => {
@@ -100,39 +102,63 @@ const SingleProduct = () => {
   }, [params.id]);
 
   const handleAddToCart = () => {
-    if (singleProduct) {
-      // Check if product is in stock
-      if (singleProduct.stock <= 0) {
-        toast.error("This product is out of stock");
-        return;
-      }
-      
-      // Validate that size and color are selected
-      if (!size || !color) {
-        toast.error("Please select both size and color before adding to cart");
-        return;
-      }
-      
-      dispatch(
-        addProductToTheCart({
-          id: singleProduct._id + size + color,
-          _id: singleProduct._id,
-          name: singleProduct.name,
-          price: singleProduct.price,
-          quantity: quantity,
-          description: singleProduct.description,
-          images: singleProduct.images,
-          defaultImage: singleProduct.defaultImage,
-          cloudFolder: singleProduct.cloudFolder,
-          category: singleProduct.category,
-          season: singleProduct.season,
-          stock: singleProduct.stock,
-          size,
-          color,
-        })
-      );
-      toast.success("Product added to cart successfully!");
+    if (!singleProduct) return;
+    
+    // Clear previous validation errors
+    setValidationError("");
+    
+    // Validate that size and color are selected
+    if (!size) {
+      setValidationError("Please select a size before adding to cart");
+      return;
     }
+    
+    if (!color) {
+      setValidationError("Please select a color before adding to cart");
+      return;
+    }
+    
+    // Check if selected color is in stock
+    const selectedColorStock = singleProduct.colorStock?.find(cs => cs.color === color);
+    if (!selectedColorStock || selectedColorStock.stock <= 0) {
+      setValidationError("Selected color is out of stock");
+      return;
+    }
+    
+    if (quantity > selectedColorStock.stock) {
+      setValidationError(`Only ${selectedColorStock.stock} items available in ${color}`);
+      return;
+    }
+    
+    const productData = {
+      id: singleProduct._id + size + color,
+      _id: singleProduct._id,
+      name: singleProduct.name,
+      price: singleProduct.price,
+      quantity: quantity,
+      description: singleProduct.description,
+      images: singleProduct.images,
+      defaultImage: singleProduct.defaultImage,
+      cloudFolder: singleProduct.cloudFolder,
+      category: singleProduct.category,
+      season: singleProduct.season,
+      stock: singleProduct.stock,
+      size,
+      color,
+    };
+    
+    // Dispatch thunk action that handles validation
+    dispatch(addProductToCartWithValidation(productData))
+      .unwrap()
+      .then((result) => {
+        if (result.quantity < quantity) {
+          toast.success(`Only ${result.quantity} items available. Quantity adjusted to maximum.`);
+        }
+        toast.success("Product added to cart successfully!");
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
   };
 
   // Show loading state
@@ -236,17 +262,12 @@ const SingleProduct = () => {
             )}
 
             {/* Color Selection */}
-            {singleProduct?.color && singleProduct.color.length > 0 && (
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium">Color</label>
-                <SelectInputUpgrade
-                  selectList={singleProduct?.color?.map(c => ({ id: c.toLowerCase(), value: c.charAt(0).toUpperCase() + c.slice(1) })) || []}
-                  value={color.toLowerCase()}
-                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                    setColor(e.target.value)
-                  }
-                />
-              </div>
+            {singleProduct?.colorStock && singleProduct.colorStock.length > 0 && (
+              <ColorPicker
+                colors={singleProduct.colorStock}
+                selectedColor={color}
+                onColorChange={setColor}
+              />
             )}
 
             {/* Quantity Selection */}
@@ -261,12 +282,29 @@ const SingleProduct = () => {
             </div>
           </div>
 
+          {/* Validation Error Message */}
+          {validationError && (
+            <div className="text-red-600 text-sm font-medium">
+              {validationError}
+            </div>
+          )}
+
           {/* Add to Cart Button */}
           <Button
-            text={singleProduct?.stock > 0 ? "Add to Cart" : "Out of Stock"}
-            mode={singleProduct?.stock > 0 ? "black" : "disabled"}
+            text={(() => {
+              if (!singleProduct) return "Loading...";
+              if (singleProduct?.stock <= 0) return "Out of Stock";
+              if (!size || !color) return "Select Options";
+              return "Add to Cart";
+            })()}
+            mode={(() => {
+              if (!singleProduct) return "disabled";
+              if (singleProduct?.stock <= 0) return "disabled";
+              if (!size || !color) return "disabled";
+              return "black";
+            })()}
             onClick={handleAddToCart}
-            disabled={singleProduct?.stock <= 0}
+            disabled={!singleProduct || singleProduct?.stock <= 0 || !size || !color}
           />
         </div>
       </div>
