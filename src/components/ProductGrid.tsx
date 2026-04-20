@@ -25,6 +25,7 @@ const ProductGrid = ({
             discount={product.discount || 0}
             popularity={0}
             stock={product.stock}
+            colorStock={product.colorStock}
           />
         ))}
     </div>

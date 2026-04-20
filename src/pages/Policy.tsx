@@ -4,7 +4,124 @@ const Policy = () => {
       <h1 className="text-4xl font-light text-center mb-12 max-sm:text-3xl">
         Store Policies
       </h1>
+ {/* Arabic Version */}
+        <div className="mt-16 pt-16 border-t">
+          <h1 className="text-4xl font-light text-center mb-12 max-sm:text-3xl">سياسات المتجر</h1>
+          
+          <div className="max-w-4xl mx-auto space-y-8">
+            <section>
+              <h2 className="text-2xl font-medium mb-4 text-right">عملية الطلب</h2>
+              <div className="text-gray-600 leading-relaxed space-y-3 text-right" dir="rtl">
+                <p>
+                  <strong>كيفية الطلب:</strong> تصفح منتجاتنا، اختر القطعة المناسبة، حدد المقاس واللون، ثم أضفها إلى سلة التسوق. انتقل إلى السلة واضغط على إتمام الطلب، ثم قم بإدخال بيانات الشحن ووسائل التواصل.
+                </p>
+                <p>
+                  <strong>العربون:</strong> يتطلب دفع عربون لاستكمال الطلب. بعد إتمام الطلب سيتم تحويلك إلى واتساب لإرسال إثبات الدفع.
+                </p>
+                <p>
+                  <strong>تأكيد الطلب:</strong> بمجرد تأكيد استلام العربون، يتم تأكيد الطلب وإرسال رسالة تأكيد عبر واتساب.
+                </p>
+                <p>
+                  <strong>مدة التنفيذ:</strong> يتم تجهيز الطلبات خلال 1–2 يوم عمل بعد تأكيد الدفع.
+                </p>
+              </div>
+            </section>
 
+            {/* Payment */}
+            <section>
+              <h2 className="text-2xl font-medium mb-4 text-right">طرق الدفع</h2>
+              <div className="text-gray-600 leading-relaxed space-y-3 text-right" dir="rtl">
+                <p>نوفر طرق الدفع التالية:</p>
+                <ul className="list-disc list-inside space-y-1 mr-4">
+                  <li>الدفع عند الاستلام</li>
+                  <li>المحافظ الإلكترونية</li>
+                </ul>
+                <p>جميع المعاملات آمنة ومشفرة. يتم خصم الدفع عند تقديم طلبك.</p>
+              </div>
+            </section>
+
+            {/* Shipping */}
+            <section>
+              <h2 className="text-2xl font-medium mb-4 text-right">الشحن والتوصيل</h2>
+              <div className="text-gray-600 leading-relaxed space-y-3 text-right" dir="rtl">
+                <p>
+                  <strong>الشحن:</strong> نوفر خدمة التوصيل لجميع محافظات مصر.
+                </p>
+                <p>
+                  <strong>رسوم الشحن:</strong> تبدأ من 65 جنيه وتختلف حسب المحافظة.
+                </p>
+                <p>
+                  <strong>مدة التوصيل:</strong> قد تختلف مدة التوصيل حسب المنطقة، وتستغرق المناطق البعيدة وقتًا أطول.
+                </p>
+              </div>
+            </section>
+
+            {/* Returns */}
+            <section>
+              <h2 className="text-2xl font-medium mb-4 text-right">الإرجاع والاستبدال</h2>
+              <div className="text-gray-600 leading-relaxed space-y-3 text-right" dir="rtl">
+                <p>
+                  يمكن للعميل فحص الطلب عند الاستلام في وجود المندوب.  
+                  بعد مغادرة المندوب واستلام الطلب، لا يمكن الإرجاع أو الاستبدال.
+                </p>
+              </div>
+            </section>
+
+    {/* Product Info */}
+            <section>
+              <h2 className="text-2xl font-medium mb-4 text-right">معلومات المنتج</h2>
+              <div className="text-gray-600 leading-relaxed space-y-3 text-right" dir="rtl">
+                <p>
+                  <strong>المقاسات:</strong> إذا كنتِ غير متأكدة من المقاس، يُفضل التواصل معنا. وإذا كنتِ بين مقاسين، ننصح باختيار المقاس الأكبر.
+                </p>
+                <p>
+                  <strong>التوفر:</strong> جميع المنتجات متاحة حسب المخزون، ونحتفظ بحق إلغاء الطلب في حالة نفاد المنتج.
+        </p>
+                <p>
+                  <strong>الألوان:</strong> قد تختلف الألوان قليلًا حسب إعدادات الشاشة.
+                </p>
+              </div>
+            </section>
+
+            {/* Customer Service */}
+            <section>
+              <h2 className="text-2xl font-medium mb-4 text-right">خدمة العملاء</h2>
+              <div className="text-gray-600 leading-relaxed space-y-3 text-right" dir="rtl">
+                <p>
+                  <strong>مواعيد الدعم:</strong> متاح طوال أيام الأسبوع على مدار 24 ساعة.
+                </p>
+                <p>
+                  <strong>التواصل:</strong> عبر الهاتف أو صفحاتنا على مواقع التواصل الاجتماعي.
+                </p>
+                <p>
+                  <strong>زمن الرد:</strong> عادةً خلال 1–2 ساعة.
+        </p>
+              </div>
+            </section>
+
+            {/* Terms */}
+            <section>
+              <h2 className="text-2xl font-medium mb-4 text-right">الشروط والأحكام</h2>
+              <div className="text-gray-600 leading-relaxed space-y-3 text-right" dir="rtl">
+                <p>
+                  عند إتمام الطلب من متجر Ayla HomeWear، فإنك توافق على جميع الشروط والسياسات المذكورة.
+                </p>
+                <p>
+                  <strong>تغيير الأسعار:</strong> قد تتغير الأسعار دون إشعار مسبق، ويتم اعتماد السعر وقت الطلب.
+                </p>
+                <p>
+                  <strong>إلغاء الطلب:</strong> لا يمكن إلغاء الطلب بعد دفع العربون.
+        </p>
+              </div>
+            </section>
+
+            <section className="pt-8 border-t">
+              <p className="text-sm text-gray-500 text-center text-right" dir="rtl">
+                آخر تحديث: {new Date().toLocaleDateString('ar-EG')}
+              </p>
+            </section>
+          </div>
+        </div>
       <div className="max-w-4xl mx-auto space-y-8">
         
         {/* Ordering Process */}
@@ -131,124 +248,7 @@ const Policy = () => {
           </p>
         </section>
 
-        {/* Arabic Version */}
-        <div className="mt-16 pt-16 border-t">
-          <h1 className="text-4xl font-light text-center mb-12 max-sm:text-3xl">سياسات المتجر</h1>
-          
-          <div className="max-w-4xl mx-auto space-y-8">
-            <section>
-              <h2 className="text-2xl font-medium mb-4 text-right">عملية الطلب</h2>
-              <div className="text-gray-600 leading-relaxed space-y-3 text-right" dir="rtl">
-                <p>
-                  <strong>كيفية الطلب:</strong> تصفح منتجاتنا، اختر القطعة المناسبة، حدد المقاس واللون، ثم أضفها إلى سلة التسوق. انتقل إلى السلة واضغط على إتمام الطلب، ثم قم بإدخال بيانات الشحن ووسائل التواصل.
-                </p>
-                <p>
-                  <strong>العربون:</strong> يتطلب دفع عربون لاستكمال الطلب. بعد إتمام الطلب سيتم تحويلك إلى واتساب لإرسال إثبات الدفع.
-                </p>
-                <p>
-                  <strong>تأكيد الطلب:</strong> بمجرد تأكيد استلام العربون، يتم تأكيد الطلب وإرسال رسالة تأكيد عبر واتساب.
-                </p>
-                <p>
-                  <strong>مدة التنفيذ:</strong> يتم تجهيز الطلبات خلال 1–2 يوم عمل بعد تأكيد الدفع.
-                </p>
-              </div>
-            </section>
-
-            {/* Payment */}
-            <section>
-              <h2 className="text-2xl font-medium mb-4 text-right">طرق الدفع</h2>
-              <div className="text-gray-600 leading-relaxed space-y-3 text-right" dir="rtl">
-                <p>نوفر طرق الدفع التالية:</p>
-                <ul className="list-disc list-inside space-y-1 mr-4">
-                  <li>الدفع عند الاستلام</li>
-                  <li>المحافظ الإلكترونية</li>
-                </ul>
-                <p>جميع المعاملات آمنة ومشفرة. يتم خصم الدفع عند تقديم طلبك.</p>
-              </div>
-            </section>
-
-            {/* Shipping */}
-            <section>
-              <h2 className="text-2xl font-medium mb-4 text-right">الشحن والتوصيل</h2>
-              <div className="text-gray-600 leading-relaxed space-y-3 text-right" dir="rtl">
-                <p>
-                  <strong>الشحن:</strong> نوفر خدمة التوصيل لجميع محافظات مصر.
-                </p>
-                <p>
-                  <strong>رسوم الشحن:</strong> تبدأ من 65 جنيه وتختلف حسب المحافظة.
-                </p>
-                <p>
-                  <strong>مدة التوصيل:</strong> قد تختلف مدة التوصيل حسب المنطقة، وتستغرق المناطق البعيدة وقتًا أطول.
-                </p>
-              </div>
-            </section>
-
-            {/* Returns */}
-            <section>
-              <h2 className="text-2xl font-medium mb-4 text-right">الإرجاع والاستبدال</h2>
-              <div className="text-gray-600 leading-relaxed space-y-3 text-right" dir="rtl">
-                <p>
-                  يمكن للعميل فحص الطلب عند الاستلام في وجود المندوب.  
-                  بعد مغادرة المندوب واستلام الطلب، لا يمكن الإرجاع أو الاستبدال.
-                </p>
-              </div>
-            </section>
-
-    {/* Product Info */}
-            <section>
-              <h2 className="text-2xl font-medium mb-4 text-right">معلومات المنتج</h2>
-              <div className="text-gray-600 leading-relaxed space-y-3 text-right" dir="rtl">
-                <p>
-                  <strong>المقاسات:</strong> إذا كنتِ غير متأكدة من المقاس، يُفضل التواصل معنا. وإذا كنتِ بين مقاسين، ننصح باختيار المقاس الأكبر.
-                </p>
-                <p>
-                  <strong>التوفر:</strong> جميع المنتجات متاحة حسب المخزون، ونحتفظ بحق إلغاء الطلب في حالة نفاد المنتج.
-        </p>
-                <p>
-                  <strong>الألوان:</strong> قد تختلف الألوان قليلًا حسب إعدادات الشاشة.
-                </p>
-              </div>
-            </section>
-
-            {/* Customer Service */}
-            <section>
-              <h2 className="text-2xl font-medium mb-4 text-right">خدمة العملاء</h2>
-              <div className="text-gray-600 leading-relaxed space-y-3 text-right" dir="rtl">
-                <p>
-                  <strong>مواعيد الدعم:</strong> متاح طوال أيام الأسبوع على مدار 24 ساعة.
-                </p>
-                <p>
-                  <strong>التواصل:</strong> عبر الهاتف أو صفحاتنا على مواقع التواصل الاجتماعي.
-                </p>
-                <p>
-                  <strong>زمن الرد:</strong> عادةً خلال 1–2 ساعة.
-        </p>
-              </div>
-            </section>
-
-            {/* Terms */}
-            <section>
-              <h2 className="text-2xl font-medium mb-4 text-right">الشروط والأحكام</h2>
-              <div className="text-gray-600 leading-relaxed space-y-3 text-right" dir="rtl">
-                <p>
-                  عند إتمام الطلب من متجر Ayla HomeWear، فإنك توافق على جميع الشروط والسياسات المذكورة.
-                </p>
-                <p>
-                  <strong>تغيير الأسعار:</strong> قد تتغير الأسعار دون إشعار مسبق، ويتم اعتماد السعر وقت الطلب.
-                </p>
-                <p>
-                  <strong>إلغاء الطلب:</strong> لا يمكن إلغاء الطلب بعد دفع العربون.
-        </p>
-              </div>
-            </section>
-
-            <section className="pt-8 border-t">
-              <p className="text-sm text-gray-500 text-center text-right" dir="rtl">
-                آخر تحديث: {new Date().toLocaleDateString('ar-EG')}
-              </p>
-            </section>
-          </div>
-        </div>
+       
       </div>
     </div>
   );

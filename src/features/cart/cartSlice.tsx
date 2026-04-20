@@ -17,12 +17,12 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addProductToTheCart: (state, action: PayloadAction<ProductInCart>) => {
-      const product = state.productsInCart.find(
-        (product) => product.id === action.payload.id
+      const existingProduct = state.productsInCart.find(
+        (product) => product.id === action.payload.id && product.color === action.payload.color
       );
-      if (product) {
+      if (existingProduct) {
         state.productsInCart = state.productsInCart.map((product) => {
-          if (product.id === action.payload.id) {
+          if (product.id === action.payload.id && product.color === action.payload.color) {
             return {
               ...product,
               quantity: product.quantity + action.payload.quantity,

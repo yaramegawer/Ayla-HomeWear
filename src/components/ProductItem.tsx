@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { formatCategoryName } from "../utils/formatCategoryName";
+import { useState } from "react";
 
 const ProductItem = ({
   id,
@@ -10,6 +11,7 @@ const ProductItem = ({
   discount,
   popularity: _popularity,
   stock: _stock,
+  colorStock,
 }: {
   id: string;
   image: string;
@@ -19,10 +21,22 @@ const ProductItem = ({
   discount: number;
   popularity: number;
   stock: number;
+  colorStock?: Array<{
+    color: string;
+    stock: number;
+  }>;
 }) => {
-  const isInStock = _stock > 0;
+  const [selectedColor, setSelectedColor] = useState<string>(
+    colorStock && colorStock.length > 0 ? colorStock[0].color : ''
+  );
+  
   const hasDiscount = discount > 0;
   const originalPrice = hasDiscount ? price / (1 - discount / 100) : price;
+  
+  const selectedColorStock = selectedColor ? 
+    (colorStock || []).find(cs => cs.color === selectedColor)?.stock ?? 0 : 0;
+  
+  const isInStock = selectedColorStock > 0;
 
   return (
     <div className="w-[400px] flex flex-col gap-2 justify-between h-full md:max-lg:w-[350px] max-md:w-[48%] max-sm:w-[48%] max-[400px]:w-[48%]">
@@ -48,6 +62,23 @@ const ProductItem = ({
             <span className="bg-white text-black px-4 py-2 rounded-lg font-semibold text-lg">
               Out of Stock
             </span>
+          </div>
+        )}
+        
+        {/* Color Selector */}
+        {colorStock && colorStock.length > 1 && (
+          <div className="absolute top-2 left-2 bg-white border border-gray-300 rounded-lg p-1 shadow-md z-10">
+            <select 
+              value={selectedColor} 
+              onChange={(e) => setSelectedColor(e.target.value)}
+              className="text-xs border-none outline-none bg-transparent cursor-pointer"
+            >
+              {colorStock.map((cs, index) => (
+                <option key={index} value={cs.color} disabled={cs.stock <= 0}>
+                  {cs.color} {cs.stock <= 0 && '(Out of Stock)'}
+                </option>
+              ))}
+            </select>
           </div>
         )}
       </Link>

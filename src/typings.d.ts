@@ -20,6 +20,10 @@ export interface Product {
   season: string;
   stock: number;
   discount: number;
+  colorStock: Array<{
+    color: string;
+    stock: number;
+  }>;
   createdAt?: string;
   updatedAt?: string;
 }
