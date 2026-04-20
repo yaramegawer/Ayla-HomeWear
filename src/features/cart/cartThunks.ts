@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import type { ProductInCart } from '../../typings';
 import { checkCanAddToCart } from '../../utils/checkCartStockLimit';
-import { addValidatedProductToCart } from './cartSlice';
 
 export const addProductToCartWithValidation = createAsyncThunk(
   'cart/addProductToCartWithValidation',

@@ -38,16 +38,6 @@ const mockCart: ProductInCart[] = [
   }
 ];
 
-// Mock product API response
-const mockProduct = {
-  _id: 'product1',
-  name: 'Test Product',
-  colorStock: [
-    { color: 'black', stock: 3 },  // Only 3 black available
-    { color: 'blue', stock: 5 },   // 5 blue available
-    { color: 'red', stock: 8 }    // 8 red available
-  ]
-};
 
 export const testPerColorLimits = async () => {
   console.log('=== Testing Per-Color Limits ===');
