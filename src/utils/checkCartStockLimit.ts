@@ -78,8 +78,8 @@ export const checkCanAddToCart = async (
         currentInCart,
         requestedQuantity,
         message: canAddMore > 0 
-          ? `Only ${canAddMore} more can be added (max: ${maxAvailable}, already in cart: ${currentInCart})`
-          : `Maximum quantity reached for this color (max: ${maxAvailable}, already in cart: ${currentInCart})`
+          ? `You can only add ${canAddMore} more of this color. You currently have ${currentInCart} in your cart and the maximum available is ${maxAvailable}.`
+          : `You've reached the maximum quantity for this color. You already have ${currentInCart} in your cart and the available stock is ${maxAvailable}. Please remove some from your cart if you'd like to add different items.`
       };
     }
     
