@@ -291,11 +291,11 @@ const Checkout = () => {
           </div>
 
           <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-8">
-            <h3 className="text-lg font-semibold text-green-800 mb-3">Next Steps - Deposit Payment</h3>
+            <h3 className="text-lg font-semibold text-green-800 mb-3">الخطوات التالية - دفع الإيداع</h3>
             <div className="text-left space-y-2 text-sm text-green-700">
-              <p>• Please send <strong>{formatPrice(orderData.data.depositAmount)} EGP</strong> deposit to Vodafone Cash number: <strong>01092851229</strong>.</p>
-              <p>• After sending, click the WhatsApp button below and send photo of the deposit to confirm your payment.</p>
-              <p>• Your order will be  processed and confirmed once the deposit is confirmed through a WhatsApp message on the phone number you entered.</p>
+              <p>• يرجى إرسال إيداع بقيمة <strong>{formatPrice(orderData.data.depositAmount)} جنيه</strong> إلى رقم فودافون كاش: <strong>01092851229</strong>.</p>
+              <p>• بعد الإرسال، اضغط على زر واتساب أدناه وأرسل صورة من الإيداع لتأكيد الدفع.</p>
+              <p>• سيتم معالجة طلبك وتأكيده بمجرد تأكيد الإيداع عبر رسالة واتساب على رقم الهاتف الذي أدخلته.</p>
             </div>
             
             <div className="mt-6 space-y-3">
