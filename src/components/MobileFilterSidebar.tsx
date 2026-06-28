@@ -1,16 +1,21 @@
 import { useEffect } from "react";
 import { HiXMark } from "react-icons/hi2";
+import { categories } from "../data/categories";
 
 const MobileFilterSidebar = ({
   isFilterOpen,
   setIsFilterOpen,
   sortCriteria,
   setSortCriteria,
+  selectedCategory,
+  setSelectedCategory,
 }: {
   isFilterOpen: boolean;
   setIsFilterOpen: (prev: boolean) => void;
   sortCriteria: string;
   setSortCriteria: (value: string) => void;
+  selectedCategory: string;
+  setSelectedCategory: (value: string) => void;
 }) => {
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSortCriteria(e.target.value);
@@ -51,6 +56,26 @@ const MobileFilterSidebar = ({
             </div>
             
             <div className="p-4">
+              <div className="mb-6">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Category:
+                </label>
+                <select
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  onChange={(e) => {
+                    setSelectedCategory(e.target.value);
+                    setIsFilterOpen(false);
+                  }}
+                  value={selectedCategory}
+                >
+                  <option value="">All categories</option>
+                  {categories.map((category) => (
+                    <option key={category} value={category}>
+                      {category}
+                    </option>
+                  ))}
+                </select>
+              </div>
               <div className="mb-6">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Sort by:

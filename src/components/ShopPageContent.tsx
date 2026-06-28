@@ -7,6 +7,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 
 const ShopPageContent = ({ category, page, season } : { category: string; page: number; season?: string; }) => {
   const [sortCriteria, setSortCriteria] = useState<string>("");
+  const [selectedCategory, setSelectedCategory] = useState(category);
   const [currentPage, setCurrentPage] = useState(page);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -21,12 +22,23 @@ const ShopPageContent = ({ category, page, season } : { category: string; page: 
     }
   }, [currentPage, season, category, navigate, searchParams]);
 
+  const handleCategoryChange = (value: string) => {
+    setSelectedCategory(value);
+    setCurrentPage(1);
+  };
+
   return (
     <>
-      <ShopFilterAndSort sortCriteria={sortCriteria} setSortCriteria={setSortCriteria} />
+      <ShopFilterAndSort
+        sortCriteria={sortCriteria}
+        setSortCriteria={setSortCriteria}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={handleCategoryChange}
+      />
       <ProductGridWithPagination 
+        key={`${selectedCategory}-${season || "all"}`}
         sortCriteria={sortCriteria} 
-        category={category} 
+        category={selectedCategory}
         season={season}
         page={currentPage}
         onPageChange={setCurrentPage}
