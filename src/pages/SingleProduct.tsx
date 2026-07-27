@@ -12,6 +12,7 @@ import { useAppDispatch } from "../hooks";
 import WithSelectInputWrapper from "../utils/withSelectInputWrapper";
 import WithNumberInputWrapper from "../utils/withNumberInputWrapper";
 import { formatCategoryName } from "../utils/formatCategoryName";
+import { arabicToEnglishCategory } from "../data/categories";
 import ProductImageGallery from "../components/ProductImageGallery";
 import toast from "react-hot-toast";
 import { Product } from "../typings.d";
@@ -221,7 +222,7 @@ const SingleProduct = () => {
             <h1 className="text-4xl font-semibold">{singleProduct?.name}</h1>
             <div className="flex justify-between items-center">
               <p className="text-base text-secondaryBrown">
-                {formatCategoryName(singleProduct?.category || "")}
+                {formatCategoryName(arabicToEnglishCategory(singleProduct?.category || ""))}
               </p>
               <p className="text-2xl font-bold">${ singleProduct?.price }</p>
             </div>

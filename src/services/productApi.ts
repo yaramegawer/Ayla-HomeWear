@@ -1,4 +1,5 @@
 import customFetch from '../axios/custom';
+import { englishToArabicCategory } from '../data/categories';
 
 // Simple cache implementation
 const cache = new Map<string, { data: any; timestamp: number }>();
@@ -67,7 +68,7 @@ export const productApi = {
     
     // Add category and season filters to request params
     if (category) {
-      params.append('category', category);
+      params.append('category', englishToArabicCategory(category));
     }
     if (season) {
       params.append('season', season);

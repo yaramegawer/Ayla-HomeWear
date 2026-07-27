@@ -3,14 +3,21 @@ import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../hooks";
 import { ProductsResponse } from "../services/productApi";
 
+const categoryToSlug = (cat: string | undefined): string => {
+  if (!cat) return "";
+  return cat.toLowerCase();
+};
+
 const ShowingPagination = ({
   page,
   category,
+  season,
   pagination,
   onPageChange,
 }: {
   page: number;
   category: string;
+  season?: string;
   pagination?: ProductsResponse['pagination'] | null;
   onPageChange?: (page: number) => void;
 }) => {
@@ -18,7 +25,8 @@ const ShowingPagination = ({
   const navigate = useNavigate();
 
   const handlePageChange = (newPage: number) => {
-    const basePath = category ? `/shop/${category}` : '/shop';
+    const slug = categoryToSlug(category);
+    const basePath = season ? `/shop/${season}` : (slug ? `/shop/${slug}` : '/shop');
     navigate(`${basePath}?page=${newPage}`);
     if (onPageChange) {
       onPageChange(newPage);

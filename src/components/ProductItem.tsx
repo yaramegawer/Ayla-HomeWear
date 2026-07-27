@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { formatCategoryName } from "../utils/formatCategoryName";
 import { useState } from "react";
+import { arabicToEnglishCategory } from "../data/categories";
 
 const ProductItem = ({
   id,
@@ -94,7 +95,7 @@ const ProductItem = ({
         <h2>{title}</h2>
       </Link>
       <p className="text-secondaryBrown text-lg tracking-wide text-center max-md:text-base">
-        {formatCategoryName(category)}{" "}
+        {formatCategoryName(arabicToEnglishCategory(category))}{" "}
       </p>
       <div className="text-center">
         {hasDiscount ? (

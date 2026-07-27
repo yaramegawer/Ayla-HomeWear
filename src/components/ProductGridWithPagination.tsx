@@ -118,6 +118,7 @@ const ProductGridWithPagination = ({
           <ShowingPagination 
             page={currentPage} 
             category={category || ""} 
+            season={season}
             pagination={pagination}
             onPageChange={handlePageChange}
           />

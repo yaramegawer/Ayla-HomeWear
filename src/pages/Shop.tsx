@@ -4,6 +4,7 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import { ShopBanner, ShopPageContent } from "../components";
+import { arabicToEnglishCategory } from "../data/categories";
 
 export const shopCategoryLoader = async ({ params }: LoaderFunctionArgs) => {
   const { category } = params;
@@ -19,15 +20,18 @@ const Shop = () => {
   const getCategoryOrSeason = (cat: string | undefined): { category?: string; season?: string } => {
     if (!cat) return {};
     
-    const normalizedCat = cat.toLowerCase();
+    const decodedCat = decodeURIComponent(cat).trim();
+    const normalizedCat = decodedCat.toLowerCase();
     
     if (normalizedCat === 'winter' || normalizedCat === 'summer') {
       return { season: normalizedCat };
-    } else if (normalizedCat === 'pajamas' || normalizedCat === 'lingerie') {
-      return { category: normalizedCat };
+    } else if (normalizedCat === 'pajamas' || normalizedCat === 'بيجامات') {
+      return { category: 'Pajamas' };
+    } else if (normalizedCat === 'lingerie' || normalizedCat === 'لانجيري') {
+      return { category: 'Lingerie' };
     }
     
-    return {};
+    return { category: arabicToEnglishCategory(decodedCat) };
   };
   
   const { category, season } = getCategoryOrSeason(categoryParam);
