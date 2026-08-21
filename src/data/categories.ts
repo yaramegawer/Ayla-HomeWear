@@ -17,7 +17,7 @@ export const categoryTranslation: Record<string, string> = {
   "Shorts": "شورتات",
   "Plus Size": "بيج سايز",
   "Dresses": "فساتين",
-  "100% Cotton": "قطن 100%",
+  "100% Cotton": "قطن صافي",
   "Lingerie": "لانجيري",
   "Imported Lingerie": "لانجيري مستورد",
   "Tracksuits": "ترنجات",
@@ -27,7 +27,7 @@ export const categoryTranslation: Record<string, string> = {
 // Map from Arabic (backend) to English (frontend display)
 export const arabicToEnglishCategory = (arabicCat: string): string => {
   if (!arabicCat) return "";
-  
+
   // First check if it's already an English category key (case-insensitive)
   const matchedKey = Object.keys(categoryTranslation).find(
     (key) => key.toLowerCase() === arabicCat.toLowerCase()
