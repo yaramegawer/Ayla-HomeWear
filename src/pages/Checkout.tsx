@@ -92,7 +92,7 @@ const Checkout = () => {
   const handleGovernmentChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const government = e.target.value;
     setSelectedGovernment(government);
-    
+
     const gov = egyptianGovernorates.find(g => g.name === government);
     if (gov) {
       setShippingCost(gov.shippingCost);
@@ -102,7 +102,7 @@ const Checkout = () => {
   // Validate form fields
   const validateForm = (formData: FormData) => {
     const errors: typeof fieldErrors = {};
-    
+
     const customerName = formData.get('customerName') as string;
     const phone = formData.get('phone') as string;
     const address = formData.get('address') as string;
@@ -112,19 +112,19 @@ const Checkout = () => {
     if (!customerName || customerName.trim() === '') {
       errors.customerName = 'Full name is required';
     }
-    
+
     if (!phone || phone.trim() === '') {
       errors.phone = 'Phone number is required';
     } else if (!/^01[0-9]{9}$/.test(phone.replace(/\s/g, ''))) {
       errors.phone = 'Please enter a valid Egyptian phone number (01xxxxxxxxx)';
     }
-    
+
     if (!address || address.trim() === '') {
       errors.address = 'Delivery address is required';
     } else if (address.trim().length < 10) {
       errors.address = 'Please enter a complete delivery address';
     }
-    
+
     if (!selectedGovernment) {
       errors.government = 'Please select a governorate';
     }
@@ -145,7 +145,7 @@ const Checkout = () => {
 
     const formData = new FormData(e.currentTarget);
     console.log('Form data entries:', Array.from(formData.entries()));
-    
+
     const errors = validateForm(formData);
     console.log('Errors found:', errors);
 
@@ -159,7 +159,7 @@ const Checkout = () => {
     }
 
     // Validate products have required data
-    const invalidProducts = productsInCart.filter(product => 
+    const invalidProducts = productsInCart.filter(product =>
       !product._id || !product.quantity || !product.price || !product.color || !product.size
     );
 
@@ -189,8 +189,8 @@ const Checkout = () => {
       };
 
       console.log('Submitting order data:', customerData);
-      console.log('Products being sent (price calculated by backend):', productsInCart.map(p => ({ 
-        name: p.name, 
+      console.log('Products being sent (price calculated by backend):', productsInCart.map(p => ({
+        name: p.name,
         productId: p._id,
         quantity: p.quantity,
         color: p.color,
@@ -204,7 +204,7 @@ const Checkout = () => {
         dispatch(clearCart());
         setOrderData(response.data);
         toast.success("Order created successfully!");
-        
+
         // Auto-open WhatsApp after 2 seconds
         setTimeout(() => {
           const correctWhatsAppLink = generateWhatsAppLink('010 92851229');
@@ -219,7 +219,7 @@ const Checkout = () => {
     } catch (error: any) {
       console.error('Order creation error:', error);
       console.error('Error response:', error.response?.data);
-      
+
       if (error.response?.data?.errors) {
         const errorMessages = error.response.data.errors.map((err: any) => err.message).join(', ');
         toast.error(`Validation errors: ${errorMessages}`);
@@ -293,24 +293,24 @@ const Checkout = () => {
           <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-8">
             <h3 className="text-lg font-semibold text-green-800 mb-3">الخطوات التالية - دفع الإيداع</h3>
             <div className="text-left space-y-2 text-sm text-green-700">
-              <p>• يرجى إرسال إيداع بقيمة <strong>{formatPrice(orderData.data.depositAmount)} جنيه</strong> إلى رقم فودافون كاش: <strong>01092851229</strong>.</p>
+              <p>• يرجى إرسال إيداع بقيمة <strong>{formatPrice(orderData.data.depositAmount)} جنيه</strong> إلى رقم فودافون كاش: <strong>01033727566</strong>.</p>
               <p>• بعد الإرسال، اضغط على زر واتساب أدناه وأرسل صورة من الإيداع لتأكيد الدفع.</p>
               <p>• سيتم معالجة طلبك وتأكيده بمجرد تأكيد الإيداع عبر رسالة واتساب على رقم الهاتف الذي أدخلته.</p>
             </div>
-            
+
             <div className="mt-6 space-y-3">
               <a
-                href={generateWhatsAppLink('01092851229')}
+                href={generateWhatsAppLink('01033727566')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center w-full bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors"
               >
                 <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.123-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.123-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
                 </svg>
                 إرسال تأكيد الإيداع عبر واتساب
               </a>
-              
+
               <button
                 onClick={() => {
                   // Redirect to home (cart already cleared)
@@ -351,11 +351,10 @@ const Checkout = () => {
                     id="customerName"
                     name="customerName"
                     required
-                    className={`block w-full py-2 px-3 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-secondaryBrown ${
-                      fieldErrors.customerName 
-                        ? 'border-red-500 focus:border-red-500' 
+                    className={`block w-full py-2 px-3 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-secondaryBrown ${fieldErrors.customerName
+                        ? 'border-red-500 focus:border-red-500'
                         : 'border-gray-300 focus:border-secondaryBrown'
-                    }`}
+                      }`}
                   />
                   {fieldErrors.customerName && (
                     <p className="mt-1 text-sm text-red-600">{fieldErrors.customerName}</p>
@@ -372,11 +371,10 @@ const Checkout = () => {
                     name="phone"
                     required
                     placeholder="01xxxxxxxxx"
-                    className={`block w-full py-2 px-3 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-secondaryBrown ${
-                      fieldErrors.phone 
-                        ? 'border-red-500 focus:border-red-500' 
+                    className={`block w-full py-2 px-3 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-secondaryBrown ${fieldErrors.phone
+                        ? 'border-red-500 focus:border-red-500'
                         : 'border-gray-300 focus:border-secondaryBrown'
-                    }`}
+                      }`}
                   />
                   {fieldErrors.phone && (
                     <p className="mt-1 text-sm text-red-600">{fieldErrors.phone}</p>
@@ -393,11 +391,10 @@ const Checkout = () => {
                     name="address"
                     required
                     rows={3}
-                    className={`block w-full py-2 px-3 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-secondaryBrown ${
-                      fieldErrors.address 
-                        ? 'border-red-500 focus:border-red-500' 
+                    className={`block w-full py-2 px-3 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-secondaryBrown ${fieldErrors.address
+                        ? 'border-red-500 focus:border-red-500'
                         : 'border-gray-300 focus:border-secondaryBrown'
-                    }`}
+                      }`}
                     placeholder="Enter your complete delivery address"
                   />
                   {fieldErrors.address && (
@@ -415,11 +412,10 @@ const Checkout = () => {
                     value={selectedGovernment}
                     onChange={handleGovernmentChange}
                     required
-                    className={`block w-full py-2 px-3 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-secondaryBrown ${
-                      fieldErrors.government 
-                        ? 'border-red-500 focus:border-red-500' 
+                    className={`block w-full py-2 px-3 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-secondaryBrown ${fieldErrors.government
+                        ? 'border-red-500 focus:border-red-500'
                         : 'border-gray-300 focus:border-secondaryBrown'
-                    }`}
+                      }`}
                   >
                     <option value="">Select Governorate</option>
                     {egyptianGovernorates.map((gov) => (
@@ -438,7 +434,7 @@ const Checkout = () => {
             {/* Payment Information */}
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
               <h2 className="text-lg font-medium text-gray-900 mb-6">Payment Information</h2>
-              
+
               <div className="space-y-4">
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                   <h3 className="font-semibold text-blue-800 mb-2">Deposit Payment Required</h3>
