@@ -352,8 +352,8 @@ const Checkout = () => {
                     name="customerName"
                     required
                     className={`block w-full py-2 px-3 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-secondaryBrown ${fieldErrors.customerName
-                        ? 'border-red-500 focus:border-red-500'
-                        : 'border-gray-300 focus:border-secondaryBrown'
+                      ? 'border-red-500 focus:border-red-500'
+                      : 'border-gray-300 focus:border-secondaryBrown'
                       }`}
                   />
                   {fieldErrors.customerName && (
@@ -372,8 +372,8 @@ const Checkout = () => {
                     required
                     placeholder="01xxxxxxxxx"
                     className={`block w-full py-2 px-3 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-secondaryBrown ${fieldErrors.phone
-                        ? 'border-red-500 focus:border-red-500'
-                        : 'border-gray-300 focus:border-secondaryBrown'
+                      ? 'border-red-500 focus:border-red-500'
+                      : 'border-gray-300 focus:border-secondaryBrown'
                       }`}
                   />
                   {fieldErrors.phone && (
@@ -392,8 +392,8 @@ const Checkout = () => {
                     required
                     rows={3}
                     className={`block w-full py-2 px-3 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-secondaryBrown ${fieldErrors.address
-                        ? 'border-red-500 focus:border-red-500'
-                        : 'border-gray-300 focus:border-secondaryBrown'
+                      ? 'border-red-500 focus:border-red-500'
+                      : 'border-gray-300 focus:border-secondaryBrown'
                       }`}
                     placeholder="Enter your complete delivery address"
                   />
@@ -413,8 +413,8 @@ const Checkout = () => {
                     onChange={handleGovernmentChange}
                     required
                     className={`block w-full py-2 px-3 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-secondaryBrown ${fieldErrors.government
-                        ? 'border-red-500 focus:border-red-500'
-                        : 'border-gray-300 focus:border-secondaryBrown'
+                      ? 'border-red-500 focus:border-red-500'
+                      : 'border-gray-300 focus:border-secondaryBrown'
                       }`}
                   >
                     <option value="">Select Governorate</option>
@@ -449,7 +449,7 @@ const Checkout = () => {
                 <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
                   <h3 className="font-semibold text-gray-800 mb-2">Vodafone Cash Details</h3>
                   <div className="text-sm text-gray-700">
-                    <p>Number: <strong>010 92851229</strong>.</p>
+                    <p>Number: <strong>01033727566</strong>.</p>
                     <p>After order creation, you'll receive a WhatsApp link to confirm payment</p>
                   </div>
                 </div>
