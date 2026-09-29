@@ -18,33 +18,224 @@ const generateWhatsAppLink = (phone: string) => {
 
 // Egyptian Governorates with shipping costs
 const egyptianGovernorates = [
-  { name: "Cairo", shippingCost: 65 },
-  { name: "Alexandria", shippingCost: 75 },
-  { name: "Giza", shippingCost: 60 },
-  { name: "Qalyubia", shippingCost: 70 },
-  { name: "Kafr El Sheikh", shippingCost: 80 },
-  { name: "Dakahlia", shippingCost: 80 },
-  { name: "Sharqia", shippingCost: 85 },
-  { name: "Gharbia", shippingCost: 85 },
-  { name: "Monufia", shippingCost: 90 },
-  { name: "Beheira", shippingCost: 90 },
-  { name: "Ismailia", shippingCost: 75 },
-  { name: "Suez", shippingCost: 75 },
-  { name: "Port Said", shippingCost: 80 },
-  { name: "Damietta", shippingCost: 80 },
-  { name: "Aswan", shippingCost: 120 },
-  { name: "Luxor", shippingCost: 110 },
-  { name: "Qena", shippingCost: 100 },
-  { name: "Asyut", shippingCost: 95 },
-  { name: "Faiyum", shippingCost: 85 },
-  { name: "Beni Suef", shippingCost: 85 },
-  { name: "Minya", shippingCost: 95 },
-  { name: "Sohag", shippingCost: 100 },
-  { name: "Red Sea", shippingCost: 130 },
-  { name: "Matrouh", shippingCost: 140 },
-  { name: "North Sinai", shippingCost: 110 },
-  { name: "South Sinai", shippingCost: 120 },
-  { name: "New Valley", shippingCost: 150 }
+  // Cairo
+  { name: "Cairo", shippingCost: 90 },
+  { name: "New Cairo", shippingCost: 90 },
+  { name: "Nasr City", shippingCost: 90 },
+  { name: "Heliopolis", shippingCost: 90 },
+  { name: "Maadi", shippingCost: 90 },
+  { name: "Helwan", shippingCost: 100 },
+  { name: "Shorouk", shippingCost: 100 },
+  { name: "Badr City", shippingCost: 110 },
+  { name: "Obour City", shippingCost: 100 },
+  { name: "New Administrative Capital", shippingCost: 110 },
+
+  // Giza
+  { name: "Giza", shippingCost: 85 },
+  { name: "6th of October", shippingCost: 85 },
+  { name: "Sheikh Zayed", shippingCost: 85 },
+  { name: "Hadayek October", shippingCost: 95 },
+  { name: "Haram", shippingCost: 85 },
+  { name: "Faisal", shippingCost: 85 },
+  { name: "Dokki", shippingCost: 85 },
+  { name: "Mohandessin", shippingCost: 85 },
+  { name: "Agouza", shippingCost: 85 },
+  { name: "Imbaba", shippingCost: 85 },
+  { name: "Bulaq El Dakrour", shippingCost: 85 },
+  { name: "Kerdasa", shippingCost: 100 },
+  { name: "Abu Rawash", shippingCost: 100 },
+
+  // Alexandria
+  { name: "Alexandria", shippingCost: 110 },
+  { name: "Agami", shippingCost: 120 },
+  { name: "Borg El Arab", shippingCost: 130 },
+  { name: "King Mariout", shippingCost: 130 },
+  { name: "Abu Qir", shippingCost: 120 },
+  { name: "Montaza", shippingCost: 110 },
+
+  // Qalyubia
+  { name: "Banha", shippingCost: 110 },
+  { name: "Shubra El Kheima", shippingCost: 95 },
+  { name: "Qalyub", shippingCost: 100 },
+  { name: "Obour", shippingCost: 100 },
+  { name: "Khanka", shippingCost: 110 },
+  { name: "Kafr Shukr", shippingCost: 120 },
+  { name: "Tukh", shippingCost: 110 },
+
+  // Sharqia
+  { name: "Zagazig", shippingCost: 110 },
+  { name: "10th of Ramadan", shippingCost: 110 },
+  { name: "Belbeis", shippingCost: 110 },
+  { name: "Minya El Qamh", shippingCost: 120 },
+  { name: "Abu Hammad", shippingCost: 120 },
+  { name: "Faqous", shippingCost: 130 },
+  { name: "Husseiniya", shippingCost: 140 },
+  { name: "Diyarb Negm", shippingCost: 120 },
+
+  // Dakahlia
+  { name: "Mansoura", shippingCost: 110 },
+  { name: "Talkha", shippingCost: 110 },
+  { name: "Mit Ghamr", shippingCost: 120 },
+  { name: "Aga", shippingCost: 120 },
+  { name: "Sherbin", shippingCost: 130 },
+  { name: "Dekernes", shippingCost: 120 },
+  { name: "Manzala", shippingCost: 140 },
+  { name: "Gamasa", shippingCost: 130 },
+
+  // Gharbia
+  { name: "Tanta", shippingCost: 110 },
+  { name: "El Mahalla El Kubra", shippingCost: 110 },
+  { name: "Kafr El Zayat", shippingCost: 120 },
+  { name: "Zefta", shippingCost: 120 },
+  { name: "Samanoud", shippingCost: 120 },
+  { name: "Basyoun", shippingCost: 120 },
+
+  // Monufia
+  { name: "Shebin El Kom", shippingCost: 110 },
+  { name: "Menouf", shippingCost: 120 },
+  { name: "Ashmoun", shippingCost: 120 },
+  { name: "Sadat City", shippingCost: 120 },
+  { name: "Tala", shippingCost: 120 },
+  { name: "Quesna", shippingCost: 110 },
+
+  // Kafr El Sheikh
+  { name: "Kafr El Sheikh", shippingCost: 120 },
+  { name: "Desouk", shippingCost: 120 },
+  { name: "Fuwwah", shippingCost: 130 },
+  { name: "Baltim", shippingCost: 140 },
+  { name: "Sidi Salem", shippingCost: 130 },
+  { name: "Biyala", shippingCost: 130 },
+
+  // Beheira
+  { name: "Damanhour", shippingCost: 120 },
+  { name: "Kafr El Dawwar", shippingCost: 120 },
+  { name: "Rashid", shippingCost: 130 },
+  { name: "Edku", shippingCost: 130 },
+  { name: "Abu Hummus", shippingCost: 130 },
+  { name: "Hosh Issa", shippingCost: 130 },
+  { name: "Wadi El Natrun", shippingCost: 140 },
+
+  // Ismailia
+  { name: "Ismailia", shippingCost: 110 },
+  { name: "Fayed", shippingCost: 120 },
+  { name: "Qantara East", shippingCost: 140 },
+  { name: "Qantara West", shippingCost: 120 },
+  { name: "Abu Suweir", shippingCost: 120 },
+
+  // Suez
+  { name: "Suez", shippingCost: 110 },
+  { name: "Ain Sokhna", shippingCost: 150 },
+
+  // Port Said
+  { name: "Port Said", shippingCost: 120 },
+  { name: "Port Fouad", shippingCost: 120 },
+
+  // Damietta
+  { name: "Damietta", shippingCost: 120 },
+  { name: "New Damietta", shippingCost: 120 },
+  { name: "Ras El Bar", shippingCost: 130 },
+  { name: "Faraskour", shippingCost: 130 },
+  { name: "Kafr Saad", shippingCost: 130 },
+
+  // Fayoum
+  { name: "Faiyum", shippingCost: 120 },
+  { name: "Ibshaway", shippingCost: 130 },
+  { name: "Sinnuris", shippingCost: 120 },
+  { name: "Tamiya", shippingCost: 130 },
+  { name: "Youssef El Seddik", shippingCost: 150 },
+
+  // Beni Suef
+  { name: "Beni Suef", shippingCost: 130 },
+  { name: "Biba", shippingCost: 140 },
+  { name: "Nasser", shippingCost: 130 },
+  { name: "Ihnasia", shippingCost: 140 },
+  { name: "Sumusta", shippingCost: 140 },
+
+  // Minya
+  { name: "Minya", shippingCost: 140 },
+  { name: "Maghagha", shippingCost: 150 },
+  { name: "Beni Mazar", shippingCost: 150 },
+  { name: "Matay", shippingCost: 150 },
+  { name: "Samalut", shippingCost: 140 },
+  { name: "Abu Qurqas", shippingCost: 140 },
+  { name: "Mallawi", shippingCost: 150 },
+  { name: "Deir Mawas", shippingCost: 160 },
+
+  // Assiut
+  { name: "Asyut", shippingCost: 150 },
+  { name: "Abnub", shippingCost: 160 },
+  { name: "Manfalut", shippingCost: 160 },
+  { name: "Qusiya", shippingCost: 160 },
+  { name: "Dairut", shippingCost: 160 },
+  { name: "El Badari", shippingCost: 170 },
+
+  // Sohag
+  { name: "Sohag", shippingCost: 160 },
+  { name: "Akhmim", shippingCost: 160 },
+  { name: "Girga", shippingCost: 170 },
+  { name: "Tahta", shippingCost: 160 },
+  { name: "Tima", shippingCost: 170 },
+  { name: "El Maragha", shippingCost: 170 },
+  { name: "Dar El Salam", shippingCost: 180 },
+
+  // Qena
+  { name: "Qena", shippingCost: 170 },
+  { name: "Nag Hammadi", shippingCost: 170 },
+  { name: "Qus", shippingCost: 170 },
+  { name: "Dishna", shippingCost: 180 },
+  { name: "Abu Tesht", shippingCost: 180 },
+  { name: "Farshut", shippingCost: 180 },
+
+  // Luxor
+  { name: "Luxor", shippingCost: 180 },
+  { name: "Esna", shippingCost: 190 },
+  { name: "Armant", shippingCost: 190 },
+  { name: "El Tod", shippingCost: 190 },
+  { name: "Qurna", shippingCost: 190 },
+
+  // Aswan
+  { name: "Aswan", shippingCost: 190 },
+  { name: "Kom Ombo", shippingCost: 200 },
+  { name: "Edfu", shippingCost: 200 },
+  { name: "Daraw", shippingCost: 200 },
+  { name: "Abu Simbel", shippingCost: 250 },
+
+  // Red Sea
+  { name: "Hurghada", shippingCost: 180 },
+  { name: "El Gouna", shippingCost: 190 },
+  { name: "Safaga", shippingCost: 200 },
+  { name: "Quseir", shippingCost: 220 },
+  { name: "Marsa Alam", shippingCost: 250 },
+  { name: "Ras Ghareb", shippingCost: 200 },
+
+  // Matrouh
+  { name: "Marsa Matrouh", shippingCost: 200 },
+  { name: "El Alamein", shippingCost: 170 },
+  { name: "New Alamein", shippingCost: 170 },
+  { name: "Sidi Abdel Rahman", shippingCost: 190 },
+  { name: "Sallum", shippingCost: 250 },
+  { name: "Siwa", shippingCost: 250 },
+
+  // North Sinai
+  { name: "Arish", shippingCost: 180 },
+  { name: "Bir El Abd", shippingCost: 200 },
+  { name: "Sheikh Zuweid", shippingCost: 220 },
+  { name: "Rafah", shippingCost: 250 },
+
+  // South Sinai
+  { name: "Sharm El Sheikh", shippingCost: 220 },
+  { name: "Dahab", shippingCost: 230 },
+  { name: "Nuweiba", shippingCost: 240 },
+  { name: "Taba", shippingCost: 250 },
+  { name: "Saint Catherine", shippingCost: 250 },
+  { name: "El Tor", shippingCost: 200 },
+
+  // New Valley
+  { name: "Kharga", shippingCost: 220 },
+  { name: "Dakhla", shippingCost: 250 },
+  { name: "Farafra", shippingCost: 270 },
+  { name: "Baris", shippingCost: 270 }
+
 ];
 
 const Checkout = () => {
